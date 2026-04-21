@@ -8,7 +8,7 @@
     }
   },
 
-  "postCreateCommand": "npm install -g @zowe/cli",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y git-lfs && git lfs install && npm install -g @zowe/cli",
 
   "customizations": {
     "vscode": {
@@ -24,12 +24,9 @@
         "github.copilot-chat",
         "ibm.zopeneditor",
         "rangav.vscode-thunder-client",
-
         "vmware.vscode-boot-dev-pack",
         "vscjava.vscode-lombok",
-
         "zowe.vscode-extension-for-zowe",
-
         "vscode-icons-team.vscode-icons"
       ]
     }
