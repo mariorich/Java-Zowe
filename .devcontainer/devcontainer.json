@@ -1,6 +1,6 @@
 {
-  "name": "Zowe + Spring Boot (Java 21)",
-  "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
+  "name": "Zowe + Spring Boot (z/OS Dev)",
+  "image": "mcr.microsoft.com/devcontainers/java:21",
 
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
@@ -8,27 +8,34 @@
     }
   },
 
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y git-lfs && git lfs install && npm install -g @zowe/cli",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y dbus libsecret-1-0 uuid-runtime && sudo dbus-uuidgen --ensure && npm install -g @zowe/cli",
 
   "customizations": {
     "vscode": {
-      "settings": {
-        "workbench.iconTheme": "vscode-icons",
-        "explorer.confirmDelete": false,
-        "git.autofetch": true,
-        "boot-java.rewrite.reconcile": true,
-        "vsicons.dontShowNewVersionMessage": true,
-        "redhat.telemetry.enabled": true
-      },
       "extensions": [
-        "github.copilot-chat",
-        "ibm.zopeneditor",
-        "rangav.vscode-thunder-client",
         "vmware.vscode-boot-dev-pack",
+        "redhat.java",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-gradle",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
         "vscjava.vscode-lombok",
         "zowe.vscode-extension-for-zowe",
+        "github.copilot-chat",
         "vscode-icons-team.vscode-icons"
-      ]
+      ],
+      "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
     }
-  }
+  },
+
+  "remoteEnv": {
+    "ZOWE_CLI_NO_SECURE": "true",
+    "ZOWE_OPT_NO_KEYRING": "true"
+  },
+
+  "forwardPorts": [8080]
 }

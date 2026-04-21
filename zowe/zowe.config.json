@@ -1,0 +1,51 @@
+{
+  "$schema": "./zowe.schema.json",
+
+  "profiles": {
+    "base": {
+      "type": "base",
+      "properties": {
+        "host": "${ZOS_HOST}",
+        "rejectUnauthorized": false
+      }
+    },
+
+    "zosmf": {
+      "type": "zosmf",
+      "properties": {
+        "port": 10443
+      },
+      "profiles": {
+        "base": "base"
+      }
+    },
+
+    "tso": {
+      "type": "tso",
+      "properties": {
+        "account": "FB3",
+        "codePage": "1047",
+        "logonProcedure": "IZUFPROC"
+      },
+      "profiles": {
+        "zosmf": "zosmf"
+      }
+    },
+
+    "ssh": {
+      "type": "ssh",
+      "properties": {
+        "port": 22
+      }
+    }
+  },
+
+  "defaults": {
+    "zosmf": "zosmf",
+    "tso": "tso",
+    "ssh": "ssh",
+    "base": "base"
+  },
+
+  "autoStore": false
+}
