@@ -47,5 +47,5 @@
     "base": "base"
   },
 
-  "autoStore": false
+  "autoStore": true
 }
